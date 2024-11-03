@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Pram</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link rel="stylesheet" href="css/animate.css">
+	
+	<link rel="stylesheet" href="css/owl.carousel.min.css">
+	<link rel="stylesheet" href="css/owl.theme.default.min.css">
+	<link rel="stylesheet" href="css/magnific-popup.css">
+	<link rel="icon" type="image/x-icon" href="./favicon.png" />
+	
+	<link rel="stylesheet" href="css/flaticon.css">
+	<link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        .project-details {
+            max-width: 600px;
+            margin: auto;
+            border: 1px solid #ccc;
+            padding: 20px;
+        }
+        .project-details img {
+            max-width: 100%;
+        }
+        .tags {
+            font-size: 0.9em;
+            color: #777;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg bg-white ftco_navbar ftco-navbar-light site-navbar-target sticky-top" id="ftco-navbar">
+		<div class="container">
+			<a class="navbar-brand" href="index.html">Pram<span></span></a>
+			<button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="oi oi-menu"></span> Menu
+			</button>
+
+			<div class="collapse navbar-collapse" id="ftco-nav">
+				<ul class="navbar-nav nav ml-auto">
+					<li class="nav-item"><a href="index.html" class="nav-link"><span>Home</span></a></li>
+					<li class="nav-item"><a href="#about-section" class="nav-link"><span>About</span></a></li>
+					<li class="nav-item"><a href="#skills-section" class="nav-link"><span>Skills</span></a></li>
+					<li class="nav-item"><a href="#blog-section" class="nav-link"><span>Blog</span></a></li>
+					<li class="nav-item"><a href="#contact-section" class="nav-link"><span>Contact</span></a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+    <div class="project-details" id="projectDetails">
+        <h1 id="projectTitle"></h1>
+        <img id="projectImage" src="" alt="Project Image">
+        <p id="projectDescription"></p>
+        <p class="tags" id="projectTags"></p>
+        <a href="index.html">Back to Projects</a>
+    </div>
+
+    <script>
+        const projectDetails = document.getElementById('projectDetails');
+        const projectTitle = document.getElementById('projectTitle');
+        const projectImage = document.getElementById('projectImage');
+        const projectDescription = document.getElementById('projectDescription');
+        const projectTags = document.getElementById('projectTags');
+
+        // Ambil parameter index dari URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const projectIndex = urlParams.get('index');
+
+        // Ambil data proyek dari localStorage
+        let projects = JSON.parse(localStorage.getItem('projects')) || [];
+        const project = projects[projectIndex];
+
+        if (project) {
+            // Tampilkan detail proyek
+            projectTitle.innerText = project.title;
+            projectImage.src = project.imageUrl;
+            projectDescription.innerText = project.description;
+            projectTags.innerText = `Tags: ${project.tags}`;
+        } else {
+            projectDetails.innerHTML = '<p>Project not found.</p>';
+        }
+    </script>
+
+</body>
+</html>
